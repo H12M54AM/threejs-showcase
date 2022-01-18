@@ -10,39 +10,43 @@
     </head>
     <body>
         <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            </style>
-            <script src="js/three.js"></script>
-            <script>
-                // Add scene
-                const scene = new THREE.Scene()
-                const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+        }
+        </style>
+        <div id="webgl"></div>
+        <script src="js/three.js"></script>
+        <script>
+            // Add scene
+            const scene = new THREE.Scene()
+            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-                const renderer = new THREE.WebGLRenderer();
-                renderer.setSize( window.innerWidth, window.innerHeight );
-                document.body.appendChild( renderer.domElement );
-                
-                // Add Cube
-                function addCube() {
-                    const geometry = new THREE.BoxGeometry();
-                    const material = new THREE.MeshMaterial( {color: 0x00ff00} );
-                    const cube = new THREE.Mesh(geometry, material);
+            const renderer = new THREE.WebGLRenderer();
+            const aLight = new THREE.AmbientLight(0xf6e86d);
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.getElementById('webgl').appendChild(renderer.domElement)
+            
+            renderer.render(
+                    scene,
+                    camera,
+                    aLight
+                );
+        
+            // Add Cube
+            function addCube() {
+                const geometry = new THREE.BoxGeometry();
+                const material = new THREE.MeshMaterial( {color: 0x00ff00} );
+                const cube = new THREE.Mesh(geometry, material);
 
-                    scene.add(cube);
-                };
+                scene.add(cube);
+            };
 
-                addCube();
-                camera.position.x = 5;
-
-                function animate() {
-                    requestAnimationFrame( animate );
-                    renderer.render( scene, camera );
-                }
-                animate();
-            </script>
+            addCube();
+            camera.position.x = 5;
+        </script>
     </body>
 </html>
