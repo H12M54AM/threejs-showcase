@@ -1,3 +1,6 @@
+import * as THREE from "https://threejs.org/build/three.module.js";
+import { OrbitControls } from "https://threejs.org/examples/jsm/controls/OrbitControls.js";
+
 // Add scene
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -7,6 +10,8 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.getElementById('webgl').appendChild(renderer.domElement)
 
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.update();
 
 // Add Lights
 function addLight(){
@@ -45,6 +50,7 @@ function addPane() {
 function animate() {
     requestAnimationFrame( animate );
     renderer.render( scene, camera );
+    controls.update();
 }   
 
 function Main(){
