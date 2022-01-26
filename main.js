@@ -1,4 +1,4 @@
-import * as THREE from "https://threejs.org/build/three.module.js";
+import * as THREE from "https://threejs.org/build/three.js";
 import { OrbitControls } from "https://threejs.org/examples/jsm/controls/OrbitControls.js";
 
 // Add scene
